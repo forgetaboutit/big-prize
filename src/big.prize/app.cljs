@@ -38,7 +38,7 @@
   (reify
     om/IRender
     (render [this]
-      (dom/div #js {:className "team"}
+      (dom/div #js {:className (str "team team-" (:id app))}
         (dom/span nil (:points app))))))
 
 (defn teams-panel [app owner]

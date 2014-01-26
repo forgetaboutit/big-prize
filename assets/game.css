@@ -1,0 +1,58 @@
+main {
+  height: 1024px;
+  width: 1280px;
+}
+
+.teams-panel,
+.categories {
+  display: flex;
+  flex-direction: row;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+}
+
+.categories {
+}
+
+div.team {
+  border-radius: 2vmin;
+  margin: 1vmin 0.5vmin;
+  padding: 1vmin;
+  text-align: right;
+  width: 4vmin;
+}
+
+.team-1 {
+  background-color: #b58900;
+}
+
+.team-2 {
+  background-color: #cb4b16;
+}
+
+.team-3 {
+  background-color: #dc322f;
+}
+
+.team-4 {
+  background-color: #d33682;
+}
+
+.team-5 {
+  background-color: #6c71c4;
+}
+
+.team-6 {
+  background-color: #268bd2;
+}
+
+.team-7 {
+  background-color: #2aa198;
+}
+
+.team-8 {
+  background-color: #859900;
+}
