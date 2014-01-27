@@ -36,7 +36,6 @@
 
 (defn create-team []
   (let [id (team-id)]
-    (.log js/console (str id))
     {:id id :points 0}))
 
 (defn team [app owner]
