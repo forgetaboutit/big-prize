@@ -92,7 +92,11 @@
       (let [add-team (om/get-state owner :add-team)]
         (go (loop []
               (<! add-team)
-              (om/transact! app :teams conj (create-team))
+              (om/transact! app :teams
+                (fn [xs]
+                  (if (< (count xs) 8)
+                    (conj xs (create-team))
+                    xs)))
               (recur))))
       (let [select-field (om/get-state owner :select-field)]
         (go (loop []
