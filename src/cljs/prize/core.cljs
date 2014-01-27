@@ -22,11 +22,41 @@
   (atom
     {:teams [{:id 1 :points 0}]
      :categories [{:name "Allgemeinwissen"
-                   :challenges [{:text "Hallo Welt!" :taken false}
+                   :challenges [{:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
                                 {:text "Hello World!" :taken false}]}
                   {:name "Sport"
-                   :challenges [{:text "Michael Schumacher" :taken false}
-                                {:text "Blarg!" :taken false}]}]}))
+                   :challenges [{:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}]}
+                  {:name "Rekorde"
+                   :challenges [{:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}]}
+                  {:name "Musik"
+                   :challenges [{:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}]}
+                  {:name "Filme"
+                   :challenges [{:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}]}
+                  {:name "Feiertage"
+                   :challenges [{:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}
+                                {:text "Hello World!" :taken false}]}]}))
 
 (def team-id
   (let [id (atom 1)]
