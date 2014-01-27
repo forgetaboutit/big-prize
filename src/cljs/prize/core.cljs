@@ -99,6 +99,7 @@
     (render-state [this {:keys [select-field]}]
       (.log js/console app)
       (dom/div #js {:className "category"}
+        (dom/div #js {:className "category-name"} (:name app))
         (om/build-all challenge (:challenges app)
           {:init-state {:select-field select-field}})))))
 

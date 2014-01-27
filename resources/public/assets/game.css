@@ -6,6 +6,7 @@
 }
 
 main {
+  background: #fdf6e3;
   font-family: 'Duru Sans';
   height: 1024px;
   width: 1280px;
@@ -29,21 +30,19 @@ button:hover {
   flex-direction: row;
 }
 
-.category {
-  display: flex;
-  flex-direction: column;
-}
-
-.categories {
+button.add-team,
+div.team,
+div.category-name,
+div.challenge {
+  color: #fdf6e3;
+  line-height: 1.5em;
 }
 
 button.add-team,
 div.team {
   border-radius: 2.5vmin;
-  color: #fdf6e3;
   font-size: 2vmin;
-  font-weight: 700;
-  line-height: 1.5em;
+  font-weight: 600;
   margin: 1vmin 0.5vmin;
   padding: 1vmin;
 }
@@ -56,6 +55,31 @@ button.add-team {
 div.team {
   text-align: center;
   width: 6vmin;
+}
+
+div.categories {
+}
+
+div.category {
+  display: flex;
+  flex-direction: column;
+  width: 20vmin;
+}
+
+div.category-name,
+div.challenge {
+  border-radius: 2.5vmin;
+  font-size: 3vmin;
+  margin: 0.5vmin;
+  padding: 1vmin;
+}
+
+div.category-name {
+  background: #586e75;
+}
+
+div.challenge {
+  background: #657b83;
 }
 
 .team-1 {
