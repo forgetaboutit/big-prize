@@ -1,4 +1,4 @@
-(ns big.prize
+(ns prize.core
   (:require-macros [cljs.core.async.macros :refer [go]]
                    [secretary.macros :refer [defroute]])
   (:require [goog.events :as events]
@@ -7,9 +7,12 @@
             [om.dom :as dom :include-macros true]
             [clojure.data :as data]
             [clojure.string :as string]
-            [secretary.core :as secretary])
+            [secretary.core :as secretary]
+            [clojure.browser.repl :as repl])
   (:import [goog History]
            [goog.history EventType]))
+
+(repl/connect "http://localhost:9000/repl")
 
 (enable-console-print!)
 
@@ -17,7 +20,7 @@
 ;;
 (def app-state
   (atom
-    {:teams []
+    {:teams [{:id 1 :points 0}]
      :categories [{:name "Allgemeinwissen"
                    :challenges [{:text "Hallo Welt!" :taken false}
                                 {:text "Hello World!" :taken false}]}
@@ -26,7 +29,7 @@
                                 {:text "Blarg!" :taken false}]}]}))
 
 (def team-id
-  (let [id (atom 0)]
+  (let [id (atom 1)]
     (fn [] (do
              (swap! id inc)
              @id))))
@@ -103,6 +106,11 @@
         (om/build categories app
           {:init-state {:select-field select-field}})))))
 
+(om/root
+  app-state
+  game
+  (.getElementById js/document "game-root"))
+
 ;; ;;     om/IInitState
 ;; ;;     (init-state [_]
 ;; ;;       {:delete (chan)})
@@ -124,11 +132,6 @@
 ;; ;;         (dom/div nil
 ;; ;;           (dom/input #js {:type "text" :ref "new-contact"})
 ;; ;;           (dom/button #js {:onClick #(add-contact app owner)} "Add contact"))))))
-
-;; (om/root
-;;   app-state
-;;   game
-;;   (.getElementById js/document "game-root"))
 
 ;; ;; (def app-state
 ;; ;;   (atom
