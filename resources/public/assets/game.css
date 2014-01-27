@@ -1,6 +1,26 @@
+@font-face {
+  font-family: 'Duru Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Duru Sans'), local('DuruSans-Regular'), url(/assets/duru-sans.woff) format('woff');
+}
+
 main {
+  font-family: 'Duru Sans';
   height: 1024px;
   width: 1280px;
+}
+
+* {
+  box-sizing: content-box;
+}
+
+button,
+button:active,
+button:visited,
+button:focus,
+button:hover {
+  border: 0;
 }
 
 .teams-panel,
@@ -17,11 +37,22 @@ main {
 .categories {
 }
 
+button.add-team,
 div.team {
   border-radius: 2vmin;
+  color: #fdf6e3;
+  font-weight: 600;
   margin: 1vmin 0.5vmin;
   padding: 1vmin;
-  text-align: right;
+}
+
+button.add-team {
+  background: #002b36;
+  width: 2vmin;
+}
+
+div.team {
+  text-align: center;
   width: 4vmin;
 }
 
