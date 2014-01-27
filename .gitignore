@@ -1,3 +1,9 @@
 out/
 *.js
 target/
+.lein-repl-history
+.repl/
+.sass-cache/
+
+repl/
+resources/public/js/
