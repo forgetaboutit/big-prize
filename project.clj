@@ -11,7 +11,8 @@
                  [om "0.3.0"]
                  [cljs-ajax "0.2.3"]
                  [compojure "1.1.6"]
-                 [com.cemerick/piggieback "0.1.2"]]
+                 [com.cemerick/piggieback "0.1.2"]
+                 [ring "1.2.1"]]
 
   :plugins [[lein-cljsbuild "1.0.1"]
             [lein-ring "0.8.8"]]

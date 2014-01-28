@@ -1,17 +1,18 @@
 (ns prize.core
   (:use compojure.core)
   (:require [compojure.handler :as handler]
-            [compojure.route :as route]))
+            [compojure.route :as route]
+            [ring.util.response :as resp]))
 
 ;; defroutes macro defines a function that chains individual route
 ;; functions together. The request map is passed to each function in
 ;; turn, until a non-nil response is returned.
 (defroutes app-routes
-  ; to serve document root address
-  (GET "/" [] "<p>Hello from compojure</p>")
-  ; to serve static pages saved in resources/public directory
+  ;; to serve document root address
+  (GET "/" [] (resp/file-response "index.html" {:root "resources/public"}))
+  ;; to serve static pages saved in resources/public directory
   (route/resources "/")
-  ; if page is not found
+  ;; if page is not found
   (route/not-found "Page not found"))
 
 ;; site function creates a handler suitable for a standard website,
