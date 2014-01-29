@@ -87,6 +87,18 @@
           "+")
         (om/build-all team (:teams app))))))
 
+(defn text-challenge [app owner]
+  (reify
+    om/IRenderState
+    (render-state [this {:keys [select-field]}]
+      (dom/div #js {:className "challenge"
+                    :onClick #(put! select-field @app)}
+        (:points app)))))
+
+(defn choose-challenge [type]
+  (case type
+    :text text-challenge))
+
 (defn challenge [app owner]
   (reify
     om/IRenderState
@@ -132,15 +144,20 @@
               (recur))))
       (let [select-field (om/get-state owner :select-field)]
         (go (loop []
-              (.log js/console (<! select-field))
-              (recur)))))
+              (let [challenge (<! select-field)]
+                ;; Display the selected challenge
+                (om/transact! app :route swap! :route challenge)
+                (recur))))))
     om/IRenderState
     (render-state [this {:keys [add-team select-field]}]
-      (dom/section #js {:className "game"}
-        (om/build teams-panel app
-          {:init-state {:add-team add-team}})
-        (om/build categories app
-          {:init-state {:select-field select-field}})))))
+      (let [route (:route app)]
+        (if (= :all route)
+          (dom/section #js {:className "game"}
+            (om/build teams-panel app
+              {:init-state {:add-team add-team}})
+            (om/build categories app
+              {:init-state {:select-field select-field}}))
+          (om/build (choose-challenge (:type route)) app))))))
 
 (om/root
   app-state
