@@ -64,6 +64,21 @@ div.team {
   width: 9vmin;
 }
 
+@-webkit-keyframes bounce {
+  0% {
+    -webkit-transform: translateY(-10%) scale(0.95);
+  }
+  50% {
+    -webkit-transform: translateY(10%) scale(1.15);
+  }
+  100% {
+    -webkit-transform: translateY(-10%) scale(0.95);
+  }
+}
+
+div.team.turn {
+  -webkit-animation: bounce 1s;
+  -webkit-animation-iteration-count: infinite;
 }
 
 div.categories {

@@ -20,59 +20,63 @@
 ;;
 (def app-state
   (atom
-    {:teams [{:id 1 :points 0}]
-     :categories [{:name "Allgemeinwissen"
-                   :challenges [{:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}]}
+    {:route :all
+     :teams [{:id 1 :points 0 :turn? true}
+             {:id 2 :points 0 :turn? false}]
+     :categories [{:name "Allgemein"
+                   :challenges [{:points 20 :text "Hello World!" :taken false}
+                                {:points 40 :text "Hello World!" :taken false}
+                                {:points 60 :text "Hello World!" :taken false}
+                                {:points 80 :text "Hello World!" :taken false}
+                                {:points 100 :text "Hello World!" :taken false}]}
                   {:name "Sport"
-                   :challenges [{:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}]}
+                   :challenges [{:points 20 :text "Hello World!" :taken false}
+                                {:points 40 :text "Hello World!" :taken false}
+                                {:points 60 :text "Hello World!" :taken false}
+                                {:points 80 :text "Hello World!" :taken false}
+                                {:points 100 :text "Hello World!" :taken false}]}
                   {:name "Rekorde"
-                   :challenges [{:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}]}
+                   :challenges [{:points 20 :text "Hello World!" :taken false}
+                                {:points 40 :text "Hello World!" :taken false}
+                                {:points 60 :text "Hello World!" :taken false}
+                                {:points 80 :text "Hello World!" :taken false}
+                                {:points 100 :text "Hello World!" :taken false}]}
                   {:name "Musik"
-                   :challenges [{:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}]}
+                   :challenges [{:points 20 :text "Hello World!" :taken false}
+                                {:points 40 :text "Hello World!" :taken false}
+                                {:points 60 :text "Hello World!" :taken false}
+                                {:points 80 :text "Hello World!" :taken false}
+                                {:points 100 :text "Hello World!" :taken false}]}
                   {:name "Filme"
-                   :challenges [{:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}]}
+                   :challenges [{:points 20 :text "Hello World!" :taken false}
+                                {:points 40 :text "Hello World!" :taken false}
+                                {:points 60 :text "Hello World!" :taken false}
+                                {:points 80 :text "Hello World!" :taken false}
+                                {:points 100 :text "Hello World!" :taken false}]}
                   {:name "Feiertage"
-                   :challenges [{:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}
-                                {:text "Hello World!" :taken false}]}]}))
+                   :challenges [{:points 20 :text "Hello World!" :taken false}
+                                {:points 40 :text "Hello World!" :taken false}
+                                {:points 60 :text "Hello World!" :taken false}
+                                {:points 80 :text "Hello World!" :taken false}
+                                {:points 100 :text "Hello World!" :taken false}]}]}))
 
 (def team-id
-  (let [id (atom 1)]
+  (let [id (atom 2)]
     (fn [] (do
              (swap! id inc)
              @id))))
 
 (defn create-team []
   (let [id (team-id)]
-    {:id id :points 0}))
+    {:id id :points 0 :turn? false}))
 
 (defn team [app owner]
   (reify
     om/IRender
     (render [this]
-      (dom/div #js {:className (str "team team-" (:id app))}
+      (dom/div #js {:className (str "team team-" (:id app)
+                                 (when (true? (:turn? app))
+                                   " turn"))}
         (dom/span nil (:points app))))))
 
 (defn teams-panel [app owner]
@@ -91,7 +95,7 @@
     (render-state [this {:keys [select-field]}]
       (dom/div #js {:className "challenge"
                     :onClick #(put! select-field @app)}
-        (:text app)))))
+        (:points app)))))
 
 (defn category [app owner]
   (reify
