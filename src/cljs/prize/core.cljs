@@ -16,49 +16,47 @@
 
 (enable-console-print!)
 
-;; is-turn-of :team
-;;
 (def app-state
   (atom
     {:route :all
      :teams [{:id 1 :points 0 :turn? true}
              {:id 2 :points 0 :turn? false}]
      :categories [{:name "Allgemein"
-                   :challenges [{:points 20 :text "Hello World!" :taken false}
-                                {:points 40 :text "Hello World!" :taken false}
-                                {:points 60 :text "Hello World!" :taken false}
-                                {:points 80 :text "Hello World!" :taken false}
-                                {:points 100 :text "Hello World!" :taken false}]}
+                   :challenges [{:points 20 :type :text :text "Hello World!" :taken false}
+                                {:points 40 :type :text :text "Hello World!" :taken false}
+                                {:points 60 :type :text :text "Hello World!" :taken false}
+                                {:points 80 :type :text :text "Hello World!" :taken false}
+                                {:points 100 :type :text :text "Hello World!" :taken false}]}
                   {:name "Sport"
-                   :challenges [{:points 20 :text "Hello World!" :taken false}
-                                {:points 40 :text "Hello World!" :taken false}
-                                {:points 60 :text "Hello World!" :taken false}
-                                {:points 80 :text "Hello World!" :taken false}
-                                {:points 100 :text "Hello World!" :taken false}]}
+                   :challenges [{:points 20 :type :text :text "Hello World!" :taken false}
+                                {:points 40 :type :text :text "Hello World!" :taken false}
+                                {:points 60 :type :text :text "Hello World!" :taken false}
+                                {:points 80 :type :text :text "Hello World!" :taken false}
+                                {:points 100 :type :text :text "Hello World!" :taken false}]}
                   {:name "Rekorde"
-                   :challenges [{:points 20 :text "Hello World!" :taken false}
-                                {:points 40 :text "Hello World!" :taken false}
-                                {:points 60 :text "Hello World!" :taken false}
-                                {:points 80 :text "Hello World!" :taken false}
-                                {:points 100 :text "Hello World!" :taken false}]}
+                   :challenges [{:points 20 :type :text :text "Hello World!" :taken false}
+                                {:points 40 :type :text :text "Hello World!" :taken false}
+                                {:points 60 :type :text :text "Hello World!" :taken false}
+                                {:points 80 :type :text :text "Hello World!" :taken false}
+                                {:points 100 :type :text :text "Hello World!" :taken false}]}
                   {:name "Musik"
-                   :challenges [{:points 20 :text "Hello World!" :taken false}
-                                {:points 40 :text "Hello World!" :taken false}
-                                {:points 60 :text "Hello World!" :taken false}
-                                {:points 80 :text "Hello World!" :taken false}
-                                {:points 100 :text "Hello World!" :taken false}]}
+                   :challenges [{:points 20 :type :text :text "Hello World!" :taken false}
+                                {:points 40 :type :text :text "Hello World!" :taken false}
+                                {:points 60 :type :text :text "Hello World!" :taken false}
+                                {:points 80 :type :text :text "Hello World!" :taken false}
+                                {:points 100 :type :text :text "Hello World!" :taken false}]}
                   {:name "Filme"
-                   :challenges [{:points 20 :text "Hello World!" :taken false}
-                                {:points 40 :text "Hello World!" :taken false}
-                                {:points 60 :text "Hello World!" :taken false}
-                                {:points 80 :text "Hello World!" :taken false}
-                                {:points 100 :text "Hello World!" :taken false}]}
+                   :challenges [{:points 20 :type :text :text "Hello World!" :taken false}
+                                {:points 40 :type :text :text "Hello World!" :taken false}
+                                {:points 60 :type :text :text "Hello World!" :taken false}
+                                {:points 80 :type :text :text "Hello World!" :taken false}
+                                {:points 100 :type :text :text "Hello World!" :taken false}]}
                   {:name "Feiertage"
-                   :challenges [{:points 20 :text "Hello World!" :taken false}
-                                {:points 40 :text "Hello World!" :taken false}
-                                {:points 60 :text "Hello World!" :taken false}
-                                {:points 80 :text "Hello World!" :taken false}
-                                {:points 100 :text "Hello World!" :taken false}]}]}))
+                   :challenges [{:points 20 :type :text :text "Hello World!" :taken false}
+                                {:points 40 :type :text :text "Hello World!" :taken false}
+                                {:points 60 :type :text :text "Hello World!" :taken false}
+                                {:points 80 :type :text :text "Hello World!" :taken false}
+                                {:points 100 :type :text :text "Hello World!" :taken false}]}]}))
 
 (def team-id
   (let [id (atom 2)]
@@ -148,100 +146,3 @@
   app-state
   game
   (.getElementById js/document "game-root"))
-
-;; ;;     om/IInitState
-;; ;;     (init-state [_]
-;; ;;       {:delete (chan)})
-;; ;;     om/IWillMount
-;; ;;     (will-mount [_]
-;; ;;       (let [delete (om/get-state owner :delete)]
-;; ;;         (go (loop []
-;; ;;               (let [contact (<! delete)]
-;; ;;                 (om/transact! app :contacts
-;; ;;                   (fn [xs] (into [] (remove #(= contact %) xs))))
-;; ;;                 (recur))))))
-;; ;;     om/IRenderState
-;; ;;     (render-state [this {:keys [delete]}]
-;; ;;       (dom/div nil
-;; ;;         (dom/h1 nil "Contact list")
-;; ;;         (apply dom/ul nil
-;; ;;           (om/build-all contact-view (:contacts app)
-;; ;;             {:init-state {:delete delete}}))
-;; ;;         (dom/div nil
-;; ;;           (dom/input #js {:type "text" :ref "new-contact"})
-;; ;;           (dom/button #js {:onClick #(add-contact app owner)} "Add contact"))))))
-
-;; ;; (def app-state
-;; ;;   (atom
-;; ;;     {:contacts
-;; ;;      [{:first "Ben" :last "Bitdiddle" :email "benb@mit.edu"}
-;; ;;       {:first "Alyssa" :middle-initial "P" :last "Hacker" :email "aphacker@mit.edu"}
-;; ;;       {:first "Eva" :middle "Lu" :last "Ator" :email "eval@mit.edu"}
-;; ;;       {:first "Louis" :last "Reasoner" :email "prolog@mit.edu"}
-;; ;;       {:first "Cy" :middle-initial "D" :last "Effect" :email "bugs@mit.edu"}
-;; ;;       {:first "Lem" :middle-initial "E" :last "Tweakit" :email "morebugs@mit.edu"}]}))
-
-;; ;; (defn middle-name [{:keys [middle middle-initial]}]
-;; ;;   (cond
-;; ;;     middle (str " " middle)
-;; ;;     middle-initial (str " " middle-initial ".")))
-
-;; ;; (defn display-name [{:keys [first last] :as contact}]
-;; ;;   (str last ", " first (middle-name contact)))
-
-;; ;; (defn parse-contact [contact-str]
-;; ;;   (let [[first middle last :as parts] (string/split contact-str #"\s+")
-;; ;;         [first last middle] (if (nil? last) [first middle] [first last middle])
-;; ;;         middle (when middle (string/replace middle "." ""))
-;; ;;         c (if middle (count middle) 0)]
-;; ;;     (when (>= (reduce + (map #(if % 1 0) parts)) 2)
-;; ;;       (cond-> {:first first :last last}
-;; ;;         (== c 1) (assoc :middle-initial middle)
-;; ;;         (>= c 2) (assoc :middle middle)))))
-
-;; ;; (defn add-contact [app owner]
-;; ;;   (let [input-field (om/get-node owner "new-contact")
-;; ;;         new-contact (-> input-field
-;; ;;                       .-value
-;; ;;                       parse-contact)]
-;; ;;     (when new-contact
-;; ;;       (om/transact! app :contacts conj new-contact)
-;; ;;       (set! (.-value input-field) ""))))
-
-;; ;; (defn contact-view [contact owner]
-;; ;;   (reify
-;; ;;     om/IRenderState
-;; ;;     (render-state [this {:keys [delete]}]
-;; ;;       (dom/li nil
-;; ;;         (dom/span nil (display-name contact))
-;; ;;         (dom/button #js {:onClick (fn [e] (put! delete @contact))}
-;; ;;           "Delete")))))
-
-;; ;; (defn contacts-view [app owner]
-;; ;;   (reify
-;; ;;     om/IInitState
-;; ;;     (init-state [_]
-;; ;;       {:delete (chan)})
-;; ;;     om/IWillMount
-;; ;;     (will-mount [_]
-;; ;;       (let [delete (om/get-state owner :delete)]
-;; ;;         (go (loop []
-;; ;;               (let [contact (<! delete)]
-;; ;;                 (om/transact! app :contacts
-;; ;;                   (fn [xs] (into [] (remove #(= contact %) xs))))
-;; ;;                 (recur))))))
-;; ;;     om/IRenderState
-;; ;;     (render-state [this {:keys [delete]}]
-;; ;;       (dom/div nil
-;; ;;         (dom/h1 nil "Contact list")
-;; ;;         (apply dom/ul nil
-;; ;;           (om/build-all contact-view (:contacts app)
-;; ;;             {:init-state {:delete delete}}))
-;; ;;         (dom/div nil
-;; ;;           (dom/input #js {:type "text" :ref "new-contact"})
-;; ;;           (dom/button #js {:onClick #(add-contact app owner)} "Add contact"))))))
-
-;; ;; (om/root
-;; ;;   app-state
-;; ;;   contacts-view
-;; ;;   (.getElementById js/document "game-root"))
