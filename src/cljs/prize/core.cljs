@@ -87,13 +87,18 @@
           "+")
         (om/build-all team (:teams app))))))
 
+(defn challenge-header [points partial]
+  (dom/div #js {:className "challenge-box"}
+    (dom/div #js {:className "challenge-header"} points)
+    partial))
+
 (defn text-challenge [app owner]
   (reify
     om/IRenderState
-    (render-state [this {:keys [select-field]}]
-      (dom/div #js {:className "challenge"
-                    :onClick #(put! select-field @app)}
-        (:points app)))))
+    (render-state [this {:keys [close-challenge]}]
+      (challenge-header (:points app)
+        (dom/div #js {:className ""}
+          (:text app))))))
 
 (defn choose-challenge [type]
   (case type
@@ -151,13 +156,15 @@
     om/IRenderState
     (render-state [this {:keys [add-team select-field]}]
       (let [route (:route app)]
-        (if (= :all route)
+        (let [partial
+              (if (= :all route)
+                (om/build categories app
+                  {:init-state {:select-field select-field}})
+                (om/build (choose-challenge (:type route)) route))]
           (dom/section #js {:className "game"}
             (om/build teams-panel app
               {:init-state {:add-team add-team}})
-            (om/build categories app
-              {:init-state {:select-field select-field}}))
-          (om/build (choose-challenge (:type route)) app))))))
+            partial))))))
 
 (om/root
   app-state

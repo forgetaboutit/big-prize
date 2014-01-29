@@ -115,6 +115,19 @@ div.challenge {
   line-height: 1.7em;
 }
 
+div.challenge-box {
+  background: #93a1a1;
+  border-radius: 1vmin;
+  box-shadow: 0 150px 60px -75px rgba(0, 0, 0, 0.5);
+  height: 40vmin;
+  margin: 10vmin;
+  padding: 3vmin;
+}
+
+div.challenge-box > div {
+  
+}
+
 .team-1 {
   background-color: #b58900;
 }
