@@ -29,6 +29,11 @@ button:hover {
 .categories {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+}
+
+.teams-panel {
+  margin-bottom: 1vmin;
 }
 
 button.add-team,
@@ -41,8 +46,9 @@ div.challenge {
 
 button.add-team,
 div.team {
-  border-radius: 2.5vmin;
-  font-size: 2vmin;
+  border-radius: 4vmin;
+  box-shadow: 0px 50px 30px -20px rgba(0, 0, 0, 0.5);
+  font-size: 4vmin;
   font-weight: 600;
   margin: 1vmin 0.5vmin;
   padding: 1vmin;
@@ -50,12 +56,14 @@ div.team {
 
 button.add-team {
   background: #002b36;
-  width: 3vmin;
+  width: 6vmin;
 }
 
 div.team {
   text-align: center;
-  width: 6vmin;
+  width: 9vmin;
+}
+
 }
 
 div.categories {
@@ -64,23 +72,34 @@ div.categories {
 div.category {
   display: flex;
   flex-direction: column;
-  width: 20vmin;
+  width: 18vmin;
 }
 
 div.category-name,
 div.challenge {
-  border-radius: 2.5vmin;
-  font-size: 3vmin;
-  margin: 0.5vmin;
+  border-radius: 1vmin;
+
+  font-weight: 600;
+  margin: 0.7vmin;
   padding: 1vmin;
+  text-align: center;
+  word-break: break-all;
 }
 
 div.category-name {
   background: #586e75;
+  box-shadow: 0px 30px 30px -15px rgba(0,0,0,0.5);
+  font-size: 2.7vmin;
+  line-height: 1.5em;
+  margin-bottom: 2vmin;
 }
 
 div.challenge {
   background: #657b83;
+  box-shadow: 0 60px 40px -30px rgba(0,0,0,0.5);
+  font-size: 6.5vmin;
+  height: 11vmin;
+  line-height: 1.7em;
 }
 
 .team-1 {
