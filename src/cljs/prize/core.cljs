@@ -45,26 +45,36 @@
                                  :text "Wie viele Flaschen Wein à 0.75 Liter hätte Jesus bei der Hochzeit von Kana füllen können?"}]}
                   {:name "Musik"
                    :challenges [{:type :sync :taken false :points 20
-                                 :video "" :sound1 "" :sound2 ""}
+                                 :video "/assets/videos/grenade.mp4"
+                                 :sound1 "/assets/music/behind-blue-eyes.mp3"
+                                 :sound2 "/assets/music/smells-like-teen-spirit.mp3"}
                                 {:type :sync :taken false :points 40
-                                 :video "" :sound1 "" :sound2 ""}
+                                 :video "/assets/videos/get-lucky.m4a"
+                                 :sound1 "/assets/music/sandstorm.mp3"
+                                 :sound2 "/assets/music/dickes-b.mp3"}
                                 {:type :sync :taken false :points 60
-                                 :video "" :sound1 "" :sound2 ""}
+                                 :video "/assets/videos/feel.mp4"
+                                 :sound1 "/assets/music/just-like-a-pill.mp3"
+                                 :sound2 "/assets/music/pokerface.mp3"}
                                 {:type :sync :taken false :points 80
-                                 :video "" :sound1 "" :sound2 ""}
+                                 :video "/assets/videos/thrift-shop.mp4"
+                                 :sound1 "/assets/music/tik-tok.mp3"
+                                 :sound2 "/assets/music/in-the-club.mp3"}
                                 {:type :sync :taken false :points 100
-                                 :video "" :sound1 "" :sound2 ""}]}
+                                 :video "/assets/videos/smooth-criminal.mp4"
+                                 :sound1 "/assets/music/gangstas-paradise.mp3"
+                                 :sound2 "/assets/music/jump-around.mp3"}]}
                   {:name "Floppies"
                    :challenges [{:type :sound :taken false :points 20
-                                 :sound ""}
+                                 :sound "/assets/floppies/james-bond-theme.mp4"}
                                 {:type :sound :taken false :points 40
-                                 :sound ""}
+                                 :sound "/assets/floppies/hes-a-pirate.mp4"}
                                 {:type :sound :taken false :points 60
-                                 :sound ""}
+                                 :sound "/assets/floppies/gangnam-style.mp4"}
                                 {:type :sound :taken false :points 80
-                                 :sound ""}
+                                 :sound "/assets/floppies/party-rock-anthem.mp4"}
                                 {:type :sound :taken false :points 100
-                                 :sound ""}]}
+                                 :sound "/assets/floppies/rudolph-the-rednosed-reindeer.mp4"}]}
                   {:name "Produkt/Stadt"
                    :challenges [{:type :image :taken false :points 20
                                  :image "/assets/cities/koeln.jpg"}
@@ -115,7 +125,19 @@
 
 ;;; Start video (muted) + 2 audio
 ;;;
-(defn sync-challenge [app owner])
+(defn sync-challenge [app owner]
+  (reify
+    om/IRenderState
+    (render-state [this {:keys [close-challenge]}]
+      (challenge-header (:points app)
+        (dom/div #js {:className ""}
+          (dom/video #js {:height "480" :width "853" :data-muted "muted"
+                          :controls true :autoPlay true}
+            (dom/source #js {:type "video/mp4" :muted true :src (:video app)}))
+          (dom/audio #js {:autoPlay true :controls true :loop true}
+            (dom/source #js {:type "audio/mpeg" :src (:sound1 app)}))
+          (dom/audio #js {:autoPlay true :controls true :loop true}
+            (dom/source #js {:type "audio/mpeg" :src (:sound2 app)})))))))
 
 (defn background-image-style [url]
   #js {:backgroundImage (str "url(" url ")")})
@@ -130,7 +152,14 @@
                       :style (background-image-style (:image app))})))))
 
 ;;; Start video (no image)
-(defn sound-challenge [app owner])
+(defn sound-challenge [app owner]
+  (reify
+    om/IRenderState
+    (render-state [this {:keys [close-challenge]}]
+      (challenge-header (:points app)
+        (dom/div #js {:className ""}
+          (dom/video #js {:height "10" :width "500" :controls true :autoPlay true}
+            (dom/source #js {:type "video/mp4" :src (:sound app)})))))))
 
 ;;; Show text
 (defn text-challenge [app owner]
@@ -214,3 +243,42 @@
   app-state
   game
   (.getElementById js/document "game-root"))
+
+;;; Allgemein (Text)
+;;; Wie heißt der höchste Berg Europas? - Mont Blanc
+;;;
+;;;
+;;;
+;;;
+
+;;; Rekorde (Text)
+;; Schätzfragen
+;;; Wie viele Leute passen in einen Smart - 20
+;;; Schnellste Zeit auf 100m; im Krabbeln - 16,87s
+;;; Wie viele Flaschen Wein hätte Jesus bei der Hochzeit von Kanaa gefüllt - 908
+;;; Wie lange dauerte der längste Boxkampf der Welt - 42 Runden
+;;; Wie viele Karten (rot + gelb) gab es im Viertelfinale der WM 2006 (Portugal - Niederlande) - 20, 4x rot, 16x gelb
+
+;;; Musik (Video + 2x Sound)
+;; Musikvideo + zwei parallele Tracks
+;;; Bruno Mars - Wonderwall - Behind blue eyes
+;;; Daft Punk - Sandstorm - Dickes B
+;;; Robbie Williams - Just like a pill - Pokerface
+;;; Macklemore - Tik tok - In the club
+;;; Michael Jackson - Gangsta's Paradise - Jump around
+
+;;; Floppies (Sound)
+;; Musiktitel von Floppy Disk erraten
+;;; James Bond
+;;; He's a pirate
+;;; Gangnam style
+;;; Party rock anthem
+;;; Rudolph the rednosed reindeer
+
+;;; Produkt/Stadt (Bild)
+;; Finde Heimatstandort der Marke
+;;; Kölsch Wasser - Köln
+;;; Porsche - Zuffenhausen
+;;; Siemens - München
+;;; Guinness - Dublin
+;;; Prada - Mailand
