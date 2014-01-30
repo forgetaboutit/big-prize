@@ -117,8 +117,17 @@
 ;;;
 (defn sync-challenge [app owner])
 
+(defn background-image-style [url]
+  #js {:backgroundImage (str "url(" url ")")})
+
 ;;; Show image
-(defn image-challenge [app owner])
+(defn image-challenge [app owner]
+  (reify
+    om/IRenderState
+    (render-state [this {:keys [close-challenge]}]
+      (challenge-header (:points app)
+        (dom/div #js {:className "challenge-image"
+                      :style (background-image-style (:image app))})))))
 
 ;;; Start video (no image)
 (defn sound-challenge [app owner])
