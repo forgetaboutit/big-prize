@@ -85,7 +85,7 @@ div.categories {
 div.category {
   display: flex;
   flex-direction: column;
-  width: 23vmin;
+  width: 24vmin;
 }
 
 div.category-name,
@@ -119,8 +119,8 @@ div.challenge-box {
   background: #93a1a1;
   border-radius: 1vmin;
   box-shadow: 0 150px 60px -75px rgba(0, 0, 0, 0.5);
-  height: 40vmin;
-  margin: 10vmin;
+  height: 65vmin;
+  margin: 10vmin 5vmin;
   padding: 3vmin;
 }
 
