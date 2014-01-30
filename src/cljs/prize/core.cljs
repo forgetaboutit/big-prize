@@ -22,41 +22,36 @@
      :teams [{:id 1 :points 0 :turn? true}
              {:id 2 :points 0 :turn? false}]
      :categories [{:name "Allgemein"
-                   :challenges [{:points 20 :type :text :text "Hello World!" :taken false}
-                                {:points 40 :type :text :text "Hello World!" :taken false}
-                                {:points 60 :type :text :text "Hello World!" :taken false}
-                                {:points 80 :type :text :text "Hello World!" :taken false}
-                                {:points 100 :type :text :text "Hello World!" :taken false}]}
-                  {:name "Sport"
-                   :challenges [{:points 20 :type :text :text "Hello World!" :taken false}
-                                {:points 40 :type :text :text "Hello World!" :taken false}
-                                {:points 60 :type :text :text "Hello World!" :taken false}
-                                {:points 80 :type :text :text "Hello World!" :taken false}
-                                {:points 100 :type :text :text "Hello World!" :taken false}]}
+                   :challenges [{:type :text :text "Hello World!" :taken false :points 20}
+                                {:type :text :text "Hello World!" :taken false :points 40}
+                                {:type :text :text "Hello World!" :taken false :points 60}
+                                {:type :text :text "Hello World!" :taken false :points 80}
+                                {:type :text :text "Hello World!" :taken false :points 100}]}
                   {:name "Rekorde"
-                   :challenges [{:points 20 :type :text :text "Hello World!" :taken false}
-                                {:points 40 :type :text :text "Hello World!" :taken false}
-                                {:points 60 :type :text :text "Hello World!" :taken false}
-                                {:points 80 :type :text :text "Hello World!" :taken false}
-                                {:points 100 :type :text :text "Hello World!" :taken false}]}
+                   :challenges [{:type :text :text "Hello World!" :taken false :points 20}
+                                {:type :text :text "Hello World!" :taken false :points 40}
+                                {:type :text :text "Hello World!" :taken false :points 60}
+                                {:type :text :text "Hello World!" :taken false :points 80}
+                                {:type :text :text "Hello World!" :taken false :points 100}]}
                   {:name "Musik"
-                   :challenges [{:points 20 :type :text :text "Hello World!" :taken false}
-                                {:points 40 :type :text :text "Hello World!" :taken false}
-                                {:points 60 :type :text :text "Hello World!" :taken false}
-                                {:points 80 :type :text :text "Hello World!" :taken false}
-                                {:points 100 :type :text :text "Hello World!" :taken false}]}
-                  {:name "Filme"
-                   :challenges [{:points 20 :type :text :text "Hello World!" :taken false}
-                                {:points 40 :type :text :text "Hello World!" :taken false}
-                                {:points 60 :type :text :text "Hello World!" :taken false}
-                                {:points 80 :type :text :text "Hello World!" :taken false}
-                                {:points 100 :type :text :text "Hello World!" :taken false}]}
-                  {:name "Feiertage"
-                   :challenges [{:points 20 :type :text :text "Hello World!" :taken false}
-                                {:points 40 :type :text :text "Hello World!" :taken false}
-                                {:points 60 :type :text :text "Hello World!" :taken false}
-                                {:points 80 :type :text :text "Hello World!" :taken false}
-                                {:points 100 :type :text :text "Hello World!" :taken false}]}]}))
+                   :challenges [{:type :sync :taken false :points 20}
+                                {:type :sync :taken false :points 40}
+                                {:type :sync :taken false :points 60}
+                                {:type :sync :taken false :points 80}
+                                {:type :sync :taken false :points 100}]}
+                  {:name "Floppies"
+                   :challenges [{:type :sound :taken false :points 20}
+                                {:type :sound :taken false :points 40}
+                                {:type :sound :taken false :points 60}
+                                {:type :sound :taken false :points 80}
+                                {:type :sound :taken false :points 100}]}
+                  {:name "Produkt/Stadt"
+                   :challenges [{:type :sound :taken false :points 20}
+                                {:type :sound :taken false :points 40}
+                                {:type :sound :taken false :points 60}
+                                {:type :sound :taken false :points 80}
+                                {:type :sound :taken false :points 100}]}]}))
+
 
 (def team-id
   (let [id (atom 2)]
@@ -92,6 +87,17 @@
     (dom/div #js {:className "challenge-header"} points)
     partial))
 
+;;; Start video (muted) + 2 audio
+;;;
+(defn sync-challenge [app owner])
+
+;;; Show image
+(defn image-challenge [app owner])
+
+;;; Start video (no image)
+(defn sound-challenge [app owner])
+
+;;; Show text
 (defn text-challenge [app owner]
   (reify
     om/IRenderState
@@ -102,7 +108,10 @@
 
 (defn choose-challenge [type]
   (case type
-    :text text-challenge))
+    :text text-challenge
+    :sound sound-challenge
+    :image image-challenge
+    :sync sync-challenge))
 
 (defn challenge [app owner]
   (reify

@@ -85,7 +85,7 @@ div.categories {
 div.category {
   display: flex;
   flex-direction: column;
-  width: 18vmin;
+  width: 23vmin;
 }
 
 div.category-name,
