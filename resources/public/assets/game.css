@@ -124,8 +124,11 @@ div.challenge-box {
   padding: 3vmin;
 }
 
-div.challenge-box > div {
-  
+div.challenge-image {
+  background-position: center center;
+  Background-size: cover;
+  height: 60vmin;
+  width: 110vmin;
 }
 
 .team-1 {
