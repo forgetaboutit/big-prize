@@ -22,35 +22,61 @@
      :teams [{:id 1 :points 0 :turn? true}
              {:id 2 :points 0 :turn? false}]
      :categories [{:name "Allgemein"
-                   :challenges [{:type :text :text "Hello World!" :taken false :points 20}
-                                {:type :text :text "Hello World!" :taken false :points 40}
-                                {:type :text :text "Hello World!" :taken false :points 60}
-                                {:type :text :text "Hello World!" :taken false :points 80}
-                                {:type :text :text "Hello World!" :taken false :points 100}]}
+                   :challenges [{:type :text :taken false :points 20
+                                 :text "Wie heißt der höchste Berg Europas?"}
+                                {:type :text :taken false :points 40
+                                 :text "!"}
+                                {:type :text :taken false :points 60
+                                 :text "!"}
+                                {:type :text :taken false :points 80
+                                 :text "!"}
+                                {:type :text :taken false :points 100
+                                 :text "!"}]}
                   {:name "Rekorde"
-                   :challenges [{:type :text :text "Hello World!" :taken false :points 20}
-                                {:type :text :text "Hello World!" :taken false :points 40}
-                                {:type :text :text "Hello World!" :taken false :points 60}
-                                {:type :text :text "Hello World!" :taken false :points 80}
-                                {:type :text :text "Hello World!" :taken false :points 100}]}
+                   :challenges [{:type :text :taken false :points 20
+                                 :text "Wie viele Leute passen in einen Smart?"}
+                                {:type :text :taken false :points 40
+                                 :text "Wie viele Sekunden beträgt der Weltrekord im Krabbeln über eine Distanz von 100 Meter?"}
+                                {:type :text :taken false :points 60
+                                 :text "Wie viele gelbe und rote Karten wurden insgesamt im Viertelfinale der WM 2006 im Spiel Portugal gegen die Niederlande verteilt?"}
+                                {:type :text :taken false :points 80
+                                 :text "Wie viele Runden dauerte der längste Boxkampf der Welt?"}
+                                {:type :text :taken false :points 100
+                                 :text "Wie viele Flaschen Wein à 0.75 Liter hätte Jesus bei der Hochzeit von Kana füllen können?"}]}
                   {:name "Musik"
-                   :challenges [{:type :sync :taken false :points 20}
-                                {:type :sync :taken false :points 40}
-                                {:type :sync :taken false :points 60}
-                                {:type :sync :taken false :points 80}
-                                {:type :sync :taken false :points 100}]}
+                   :challenges [{:type :sync :taken false :points 20
+                                 :video "" :sound1 "" :sound2 ""}
+                                {:type :sync :taken false :points 40
+                                 :video "" :sound1 "" :sound2 ""}
+                                {:type :sync :taken false :points 60
+                                 :video "" :sound1 "" :sound2 ""}
+                                {:type :sync :taken false :points 80
+                                 :video "" :sound1 "" :sound2 ""}
+                                {:type :sync :taken false :points 100
+                                 :video "" :sound1 "" :sound2 ""}]}
                   {:name "Floppies"
-                   :challenges [{:type :sound :taken false :points 20}
-                                {:type :sound :taken false :points 40}
-                                {:type :sound :taken false :points 60}
-                                {:type :sound :taken false :points 80}
-                                {:type :sound :taken false :points 100}]}
+                   :challenges [{:type :sound :taken false :points 20
+                                 :sound ""}
+                                {:type :sound :taken false :points 40
+                                 :sound ""}
+                                {:type :sound :taken false :points 60
+                                 :sound ""}
+                                {:type :sound :taken false :points 80
+                                 :sound ""}
+                                {:type :sound :taken false :points 100
+                                 :sound ""}]}
                   {:name "Produkt/Stadt"
-                   :challenges [{:type :sound :taken false :points 20}
-                                {:type :sound :taken false :points 40}
-                                {:type :sound :taken false :points 60}
-                                {:type :sound :taken false :points 80}
-                                {:type :sound :taken false :points 100}]}]}))
+                   :challenges [{:type :image :taken false :points 20
+                                 :image "/assets/cities/koeln.jpg"}
+                                {:type :image :taken false :points 40
+                                 :image "/assets/cities/zuffenhausen.jpg"}
+                                {:type :image :taken false :points 60
+                                 :image "/assets/cities/muenchen.jpg"}
+                                {:type :image :taken false :points 80
+                                 :image "/assets/cities/dublin.jpg"}
+                                {:type :image :taken false :points 100
+                                 :image "/assets/cities/mailand.jpg"}]}]}))
+
 
 
 (def team-id
