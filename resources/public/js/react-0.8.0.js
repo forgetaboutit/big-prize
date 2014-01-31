@@ -1763,6 +1763,7 @@ var DefaultDOMPropertyConfig = {
     method: null,
     min: null,
     multiple: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
+    muted: HAS_BOOLEAN_VALUE,
     name: null,
     pattern: null,
     placeholder: null,
