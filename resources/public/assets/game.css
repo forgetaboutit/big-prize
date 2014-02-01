@@ -121,6 +121,10 @@ div.challenge {
   line-height: 1.7em;
 }
 
+div.challenge.taken {
+  -webkit-filter: invert(0.5);
+}
+
 div.challenge-box {
   background: #93a1a1;
   border-radius: 1vmin;
