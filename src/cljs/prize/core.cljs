@@ -120,7 +120,7 @@
 
 (defn challenge-header [points partial]
   (dom/div #js {:className "challenge-box"}
-    (dom/div #js {:className "challenge-header"} points)
+    (dom/span #js {:className "challenge-header"} points)
     partial))
 
 ;;; Start video (muted) + 2 audio
@@ -131,9 +131,9 @@
     (render-state [this {:keys [close-challenge]}]
       (challenge-header (:points app)
         (dom/div #js {:className ""}
-          (dom/video #js {:height "480" :width "853" :data-muted "muted"
+          (dom/video #js {:height "514" :width "914" :muted true
                           :controls true :autoPlay true}
-            (dom/source #js {:type "video/mp4" :muted true :src (:video app)}))
+            (dom/source #js {:type "video/mp4" :src (:video app)}))
           (dom/audio #js {:autoPlay true :controls true :loop true}
             (dom/source #js {:type "audio/mpeg" :src (:sound1 app)}))
           (dom/audio #js {:autoPlay true :controls true :loop true}
@@ -167,7 +167,7 @@
     om/IRenderState
     (render-state [this {:keys [close-challenge]}]
       (challenge-header (:points app)
-        (dom/div #js {:className ""}
+        (dom/div #js {:className "text-challenge"}
           (:text app))))))
 
 (defn choose-challenge [type]
