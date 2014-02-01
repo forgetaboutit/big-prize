@@ -181,15 +181,16 @@
   (reify
     om/IRenderState
     (render-state [this {:keys [select-field]}]
-      (dom/div #js {:className "challenge"
-                    :onClick #(put! select-field @app)}
+      (dom/div #js {:className (str "challenge" (when (true? (:taken app))
+                                                  " taken"))
+                    :onClick (when (false? (:taken app))
+                               #(put! select-field @app))}
         (:points app)))))
 
 (defn category [app owner]
   (reify
     om/IRenderState
     (render-state [this {:keys [select-field]}]
-      (.log js/console app)
       (dom/div #js {:className "category"}
         (dom/div #js {:className "category-name"} (:name app))
         (om/build-all challenge (:challenges app)
