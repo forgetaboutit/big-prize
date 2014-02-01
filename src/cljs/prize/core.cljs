@@ -22,72 +22,70 @@
      :teams [{:id 1 :points 0 :turn? true}
              {:id 2 :points 0 :turn? false}]
      :categories [{:name "Allgemein"
-                   :challenges [{:type :text :taken false :points 20
+                   :challenges [{:id 0 :type :text :taken false :points 20
                                  :text "Wie heißt der höchste Berg Europas?"}
-                                {:type :text :taken false :points 40
-                                 :text "!"}
-                                {:type :text :taken false :points 60
-                                 :text "!"}
-                                {:type :text :taken false :points 80
-                                 :text "!"}
-                                {:type :text :taken false :points 100
-                                 :text "!"}]}
+                                {:id 1 :type :text :taken false :points 40
+                                 :text "Wie heißt der Erfinder des Dynamits?"}
+                                {:id 2 :type :text :taken false :points 60
+                                 :text "Wie viele Sitze hat der Bundestag im Moment?"}
+                                {:id 3 :type :text :taken false :points 80
+                                 :text "Auf welchem Kontinent findet man die schwarze Mamba?"}
+                                {:id 4 :type :text :taken false :points 100
+                                 :text "Welches DIN-Format besitzt die Maße 841x1189mm?"}]}
                   {:name "Rekorde"
-                   :challenges [{:type :text :taken false :points 20
+                   :challenges [{:id 5 :type :text :taken false :points 20
                                  :text "Wie viele Leute passen in einen Smart?"}
-                                {:type :text :taken false :points 40
+                                {:id 6 :type :text :taken false :points 40
                                  :text "Wie viele Sekunden beträgt der Weltrekord im Krabbeln über eine Distanz von 100 Meter?"}
-                                {:type :text :taken false :points 60
+                                {:id 7 :type :text :taken false :points 60
                                  :text "Wie viele gelbe und rote Karten wurden insgesamt im Viertelfinale der WM 2006 im Spiel Portugal gegen die Niederlande verteilt?"}
-                                {:type :text :taken false :points 80
+                                {:id 8 :type :text :taken false :points 80
                                  :text "Wie viele Runden dauerte der längste Boxkampf der Welt?"}
-                                {:type :text :taken false :points 100
+                                {:id 9 :type :text :taken false :points 100
                                  :text "Wie viele Flaschen Wein à 0.75 Liter hätte Jesus bei der Hochzeit von Kana füllen können?"}]}
                   {:name "Musik"
-                   :challenges [{:type :sync :taken false :points 20
+                   :challenges [{:id 10 :type :sync :taken false :points 20
                                  :video "/assets/videos/grenade.mp4"
                                  :sound1 "/assets/music/behind-blue-eyes.mp3"
                                  :sound2 "/assets/music/smells-like-teen-spirit.mp3"}
-                                {:type :sync :taken false :points 40
-                                 :video "/assets/videos/get-lucky.m4a"
+                                {:id 11 :type :sync :taken false :points 40
+                                 :video "/assets/videos/get-lucky.m4v"
                                  :sound1 "/assets/music/sandstorm.mp3"
                                  :sound2 "/assets/music/dickes-b.mp3"}
-                                {:type :sync :taken false :points 60
+                                {:id 12 :type :sync :taken false :points 60
                                  :video "/assets/videos/feel.mp4"
                                  :sound1 "/assets/music/just-like-a-pill.mp3"
                                  :sound2 "/assets/music/pokerface.mp3"}
-                                {:type :sync :taken false :points 80
+                                {:id 13 :type :sync :taken false :points 80
                                  :video "/assets/videos/thrift-shop.mp4"
                                  :sound1 "/assets/music/tik-tok.mp3"
                                  :sound2 "/assets/music/in-the-club.mp3"}
-                                {:type :sync :taken false :points 100
+                                {:id 14 :type :sync :taken false :points 100
                                  :video "/assets/videos/smooth-criminal.mp4"
                                  :sound1 "/assets/music/gangstas-paradise.mp3"
                                  :sound2 "/assets/music/jump-around.mp3"}]}
                   {:name "Floppies"
-                   :challenges [{:type :sound :taken false :points 20
+                   :challenges [{:id 15 :type :sound :taken false :points 20
                                  :sound "/assets/floppies/james-bond-theme.mp4"}
-                                {:type :sound :taken false :points 40
+                                {:id 16 :type :sound :taken false :points 40
                                  :sound "/assets/floppies/hes-a-pirate.mp4"}
-                                {:type :sound :taken false :points 60
+                                {:id 17 :type :sound :taken false :points 60
                                  :sound "/assets/floppies/gangnam-style.mp4"}
-                                {:type :sound :taken false :points 80
+                                {:id 18 :type :sound :taken false :points 80
                                  :sound "/assets/floppies/party-rock-anthem.mp4"}
-                                {:type :sound :taken false :points 100
-                                 :sound "/assets/floppies/rudolph-the-rednosed-reindeer.mp4"}]}
+                                {:id 19 :type :sound :taken false :points 100
+                                 :sound "/assets/floppies/rudolph-the-rednosed-reindeer.m4v"}]}
                   {:name "Produkt/Stadt"
-                   :challenges [{:type :image :taken false :points 20
+                   :challenges [{:id 20 :type :image :taken false :points 20
                                  :image "/assets/cities/koeln.jpg"}
-                                {:type :image :taken false :points 40
+                                {:id 21 :type :image :taken false :points 40
                                  :image "/assets/cities/zuffenhausen.jpg"}
-                                {:type :image :taken false :points 60
+                                {:id 22 :type :image :taken false :points 60
                                  :image "/assets/cities/muenchen.jpg"}
-                                {:type :image :taken false :points 80
+                                {:id 23 :type :image :taken false :points 80
                                  :image "/assets/cities/dublin.jpg"}
-                                {:type :image :taken false :points 100
+                                {:id 24 :type :image :taken false :points 100
                                  :image "/assets/cities/mailand.jpg"}]}]}))
-
-
 
 (def team-id
   (let [id (atom 2)]
