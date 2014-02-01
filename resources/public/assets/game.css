@@ -8,8 +8,8 @@
 main {
   background: #fdf6e3;
   font-family: 'Duru Sans';
-  height: 1024px;
-  width: 1280px;
+  height: 768px;
+  width: 1024px;
 }
 
 * {
@@ -65,7 +65,7 @@ button.add-team {
 
 div.team {
   text-align: center;
-  width: 9vmin;
+  width: 10vmin;
 }
 
 @-webkit-keyframes bounce {
@@ -97,7 +97,6 @@ div.category {
 div.category-name,
 div.challenge {
   border-radius: 1vmin;
-
   font-weight: 600;
   margin: 0.7vmin;
   padding: 1vmin;
