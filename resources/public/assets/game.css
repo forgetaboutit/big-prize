@@ -134,6 +134,23 @@ div.challenge-box {
   padding: 3vmin;
 }
 
+span.challenge-header {
+  background: #2aa198;
+  border-radius: 6vmin;
+  display: inline-block;
+  float: right;
+  font-size: 6vmin;
+  margin: 0 2vmin 2vmin 0;
+  padding: 3vmin;
+}
+
+div.text-challenge {
+  font-size: 8vmin;
+  line-height: 1.1em;
+  padding: 0 3vmin;
+  text-align: left;
+}
+
 div.challenge-image {
   background-position: center center;
   background-repeat: no-repeat;
