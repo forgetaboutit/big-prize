@@ -132,7 +132,8 @@ div.challenge-box {
 
 div.challenge-image {
   background-position: center center;
-  Background-size: cover;
+  background-repeat: no-repeat;
+  background-size: contain;
   height: 60vmin;
   width: 110vmin;
 }
