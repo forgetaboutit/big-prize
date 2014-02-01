@@ -99,22 +99,24 @@
 
 (defn team [app owner]
   (reify
-    om/IRender
-    (render [this]
+    om/IRenderState
+    (render-state [this {:keys [select-team]}]
       (dom/div #js {:className (str "team team-" (:id app)
                                  (when (true? (:turn? app))
-                                   " turn"))}
+                                   " turn"))
+                    :onDoubleClick #(put! select-team app)}
         (dom/span nil (:points app))))))
 
 (defn teams-panel [app owner]
   (reify
     om/IRenderState
-    (render-state [this {:keys [add-team]}]
+    (render-state [this {:keys [add-team select-team]}]
       (dom/div #js {:className "teams-panel"}
         (dom/button #js {:className "add-team"
                          :onClick #(put! add-team :add-team)}
           "+")
-        (om/build-all team (:teams app))))))
+        (om/build-all team (:teams app)
+          {:init-state {:select-team select-team}})))))
 
 (defn challenge-header [points partial]
   (dom/div #js {:className "challenge-box"}
@@ -201,12 +203,40 @@
         (om/build-all category (:categories app)
           {:init-state {:select-field select-field}})))))
 
+(defn chall-id-map [id]
+  [(quot id 5) (mod id 5)])
+
+(defn reward-team [app team]
+  (when (not= :all (:route @app))
+    (om/update! app
+      (fn [app]
+        (let [points (get-in app [:route :points])
+              team-count (count (:teams app))
+              tid (dec (:id @team))
+              turn-tid (dec (:id (first (filter #(= (:turn? %) true) (:teams app)))))
+              nid (mod (inc turn-tid) team-count)
+              [cat-id chall-id] (chall-id-map (get-in app [:route :id]))]
+          ;; (.log js/console team-count)
+          ;; (.log js/console tid)
+          ;; (.log js/console turn-tid)
+          ;; (.log js/console cat-id)
+          ;; (.log js/console chall-id)
+          ;; (.log js/console (get-in app [:categories cat-id :challenges chall-id :taken])
+          (-> app
+            (update-in [:teams tid :points] #(+ % points))
+            (assoc-in [:teams tid :turn?] false)
+            (assoc-in [:teams turn-tid :turn?] false)
+            (assoc-in [:teams nid :turn?] true)
+            (assoc-in [:route] :all)
+            (assoc-in [:categories cat-id :challenges chall-id :taken] true)))))))
+
 (defn game [app owner]
   (reify
     om/IInitState
     (init-state [_]
       {:add-team (chan)
-       :select-field (chan)})
+       :select-field (chan)
+       :select-team (chan)})
     om/IWillMount
     (will-mount [_]
       (let [add-team (om/get-state owner :add-team)]
@@ -223,9 +253,14 @@
               (let [challenge (<! select-field)]
                 ;; Display the selected challenge
                 (om/transact! app :route swap! :route challenge)
-                (recur))))))
+                (recur)))))
+      (let [select-team (om/get-state owner :select-team)]
+        (go (loop []
+              (let [selected-team (<! select-team)]
+                (reward-team app selected-team))
+              (recur)))))
     om/IRenderState
-    (render-state [this {:keys [add-team select-field]}]
+    (render-state [this {:keys [add-team select-field select-team]}]
       (let [route (:route app)]
         (let [partial
               (if (= :all route)
@@ -234,7 +269,7 @@
                 (om/build (choose-challenge (:type route)) route))]
           (dom/section #js {:className "game"}
             (om/build teams-panel app
-              {:init-state {:add-team add-team}})
+              {:init-state {:add-team add-team :select-team select-team}})
             partial))))))
 
 (om/root
